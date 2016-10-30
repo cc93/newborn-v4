@@ -4,13 +4,13 @@
 import App from './components/App.vue';
 
 //FastClick
-var attachFastClick = Origami.fastclick;
-attachFastClick(document.body);
-
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function () {
+        FastClick.attach(document.body);
+    }, false);
+}
 //WeChat
-wx.config({
-
-});
+wx.config({});
 
 //Vue
 new Vue({
@@ -19,3 +19,4 @@ new Vue({
         'app': App
     }
 });
+

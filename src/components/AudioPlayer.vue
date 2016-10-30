@@ -5,16 +5,22 @@
     }
 
     .audio-player-blue-box {
+        width: 660px;
+        height: 80px;
         left: 0;
         top: 0
     }
 
     .audio-player-white-box {
+        width: 448px;
+        height: 58px;
         left: 194px;
         top: 13px;
     }
 
     .audio-player-speaker {
+        width: 12px;
+        height: 20px;
         left: 224px;
         top: 32px;
     }
@@ -27,16 +33,22 @@
     }
 
     .audio-player-sound-wave1 {
+        width: 6px;
+        height: 20px;
         left: 0;
         top: 5px;
     }
 
     .audio-player-sound-wave2 {
+        width: 9px;
+        height: 24px;
         left: 6px;
         top: 3px;
     }
 
     .audio-player-sound-wave3 {
+        width: 9px;
+        height: 30px;
         left: 15px;
         top: 0;
     }
@@ -51,31 +63,34 @@
     .audio-player-current-time {
         right: 50px;
         top: 30px;
-        font-size: 20px;
+        font-size: 16px; /*no*/
         color: #4b585c;
     }
 
 </style>
 <template>
-    <div class="audio-player" @click="isPlay=!isPlay">
-        <img src="../../img/6_line1.png" alt="" class="audio-player-blue-box pa">
-        <img src="../../img/6_line2.png" alt="" class="audio-player-white-box pa">
-        <img src="../../img/6_s1.png" alt="" class="audio-player-speaker pa">
-        <div class="audio-player-sound-wave-box pa">
-            <img src="../../img/6_s2.png" alt="" class="audio-player-sound-wave1 pa" v-show="soundWaveFrame>=2">
-            <img src="../../img/6_s3.png" alt="" class="audio-player-sound-wave2 pa" v-show="soundWaveFrame>=3">
-            <img src="../../img/6_s4.png" alt="" class="audio-player-sound-wave3 pa" v-show="soundWaveFrame>=4">
+    <div class="audio-player">
+        <div class="audio-player-wrapper" @click="isPlay=!isPlay">
+            <slot></slot>
+            <img src="../../img/6_line1.png" alt="" class="audio-player-blue-box pa">
+            <img src="../../img/6_line2.png" alt="" class="audio-player-white-box pa">
+            <img src="../../img/6_s1.png" alt="" class="audio-player-speaker pa" @click="isPlay=!isPlay">
+            <div class="audio-player-sound-wave-box pa">
+                <img src="../../img/6_s2.png" alt="" class="audio-player-sound-wave1 pa" v-show="soundWaveFrame>=2">
+                <img src="../../img/6_s3.png" alt="" class="audio-player-sound-wave2 pa" v-show="soundWaveFrame>=3">
+                <img src="../../img/6_s4.png" alt="" class="audio-player-sound-wave3 pa" v-show="soundWaveFrame>=4">
+            </div>
+            <audio v-el:audio @play="onPlay" @ended="onEnded">
+                <source :src="src" type="audio/mpeg">
+                Your browser does not support HTML5 audio.
+            </audio>
+            <div class="audio-player-current-time pa">{{currentTimeStr}}</div>
         </div>
-        <audio v-el:audio @play="onPlay" @ended="onEnded">
-            <source :src="src" type="audio/mpeg">
-            Your browser does not support HTML5 audio.
-        </audio>
         <div class="audio-player-progress-bar-box pa">
-            <progress-bar id="audio-player-progress-bar"
-                          :progress.sync="progress" :bar-show="false" :clickable="false">
+            <progress-bar id="audio-player-progress-bar" :clickable="false"
+                          :progress.sync="progress" :bar-show="false" @on-progress-updated="onProgressUpdated">
             </progress-bar>
         </div>
-        <div class="audio-player-current-time pa">{{currentTimeStr}}</div>
     </div>
 </template>
 <script>
@@ -129,7 +144,7 @@
             //在iPad上自动检测时长有问题（偏短），所以推荐自己设置一个准确值
             if (!this.duration) {
                 this.initDuration();
-            }else {
+            } else {
                 //自己设置了duration单位是秒，要转化成字符串显示，一开始显示的播放时间是音频总时长
                 this.currentTimeStr = this.formatTime(this.duration);
             }
@@ -213,6 +228,14 @@
                 }
                 strMin = min;
                 return strMin + ':' + strSec;
+            },
+            onProgressUpdated(progress){
+                console.log('progress = ' + progress)
+//                if (this.isPlay) {
+//                    this.audioEl.currentTime = progress * this.duration;
+//                } else {
+//                    this.doPlay();
+//                }
             }
         },
     }

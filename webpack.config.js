@@ -42,11 +42,23 @@ module.exports = {
                     name: '[name].[ext]?[hash]'
                 }
             },
-            { test: /\.css$/, loader: 'style!css!px2rem?remUnit=75&remPrecision=8' }
+            // { test: /\.css$/, loader: 'css!px2rem?remUnit=75&remPrecision=8' },
             // { test: /\.css$/,  loader: "style!css" },
             //{ test: /\.jp(e)?g|png|gif|svg|ttf|eot|woff|woff2$/, loader:'url?limit=8192&name=./build/[hash].[ext]'},
             //{ test: /\.svg|ttf|eot|woff|woff2$/, loader:'file&name=./build/[hash].[ext]'}
         ]
+    },
+    // vue-loader configurations
+    vue: {
+        // ... other vue options
+        loaders: {
+            // // load all <script> without "lang" attribute with coffee-loader
+            // js: 'coffee',
+            // // load <template> directly as HTML string, without piping it
+            // // through vue-html-loader first
+            // html: 'raw'
+            css: 'style!css!px2rem?remUnit=75&remPrecision=8'
+        }
     },
     plugins: [
         new webpack.DefinePlugin({PRODUCTION: JSON.stringify(process.env.NODE_ENV === 'production')})

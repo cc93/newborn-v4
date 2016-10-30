@@ -1,4 +1,5 @@
 <style>
+
     .bg-lightblue {
         background-color: #00aeef;
     }
@@ -14,8 +15,8 @@
     }
 
     .stage {
-        width: 750px;
-        height: 1334px;
+        width: 100%;
+        height:100%;
         position: relative;
         overflow-y: scroll;
         overflow-x: hidden;
@@ -25,7 +26,6 @@
         width: 100%;
         height: 100%;
         position: relative;
-        z-index: -10;
     }
 
     #page1 {
@@ -38,24 +38,26 @@
     }
 
     .p1-pic1-box {
+        width:750px;
         height: 434px;
         overflow: hidden;
     }
 
-    .p1-pic1 {
-        -webkit-transform: scale(1.1);
-        -moz-transform: scale(1.1);
-        -ms-transform: scale(1.1);
-        -o-transform: scale(1.1);
-        transform: scale(1.1);
+    .p1-pic1{
+        width:750px;
+        height:434px;
     }
 
     .logo {
+        width: 220px;
+        height:90px;
         left: 30px;
         top: 30px
     }
 
     .registered {
+        width:120px;
+        height:60px;
         right: 30px;
         top: 44px
     }
@@ -66,21 +68,29 @@
     }
 
     .p1-copy1 {
+        width:666px;
+        height:59px;
         left: 42px;
         top: 158px;
     }
 
     .p1-copy2 {
+        width:269px;
+        height:30px;
         right: 84px;
         top: 357px;
     }
 
     .p1-copy3 {
+        width:286px;
+        height:35px;
         left: 230px;
         top: 742px;
     }
 
     .p1-copy4 {
+        width:672px;
+        height:296px;
         left: 30px;
         top: 815px;
     }
@@ -136,7 +146,7 @@
     .p2-sponsor-text {
         right: 39px;
         bottom: 48px;
-        font-size: 28px;
+        font-size : 28px;/*no*/
         color: #fdfd40;
         text-decoration: underline;
         font-weight: 900;
@@ -181,6 +191,8 @@
     }
 
     .p4-btn {
+        width:240px;
+        height:81px;
         left: 254px;
         bottom: 37px;
     }
@@ -194,21 +206,30 @@
     }
 
     .p5-copy1 {
+        width:526px;
+        height:48px;
         left: 113px;
         top: 53px;
     }
 
     .p5-copy2 {
-        left: 77px;
-        top: 632px;
+        width:129px;
+        height:26px;
+        left: 32px;
+        top: 27px;
+        z-index: 2;
     }
 
     .p5-copy3 {
+        width:690px;
+        height:128px;
         left: 30px;
         top: 710px;
     }
 
     .p5-pic1 {
+        width:690px;
+        height:427px;
         left: 30px;
         top: 146px;
     }
@@ -337,8 +358,11 @@
     }
 
     .p9-copy3 {
-        left: 90px;
-        top: 998px;
+        width: 77px;
+        height:26px;
+        left: 58px;
+        top: 28px;
+        z-index: 2;
     }
 
     #page10 {
@@ -381,13 +405,11 @@
         top: 10px;
     }
 
-
 </style>
 <template>
     <div class="app" v-show="isLoadComplete">
 
         <div class="stage" v-el:stage
-             v-auto-scale="{width:750}"
              @touchmove="onTouchMove"
              @scroll="computeCurrentPage">
 
@@ -414,67 +436,6 @@
                     <img src="../../img/1_copy4.png" alt="" class="p1-copy4 pa">
                 </div>
             </div>
-            <div id="page2" class="page bg-lightblue">
-                <div class="p2-head">
-                    <img src="../../img/2_copy1.png" alt="" class="p2-copy1 pa">
-                </div>
-                <div class="p2-body">
-                    <div class="p2-pic1-box">
-                        <img src="../../img/2_pic1.jpg" alt="">
-                    </div>
-                    <timeline class="p2-timeline pa"
-                              :start-time="20"
-                              :end-time="40"
-                              :run="currentPage==2">
-                    </timeline>
-                    <img src="../../img/2_copy2.png" alt="" class="p2-copy2 pa" >
-                    <img src="../../img/2_copy3.png" alt="" class="p2-copy3 pa">
-                    <div class="p2-sponsor-arrow pa">
-                        &gt;&gt;
-                    </div>
-                    <a :href="sponseHref">
-                        <div class="p2-sponsor-text pa">
-                            支持这一分钟的改变
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div id="page3" class="page bg-darkblue">
-                <div class="p2-head">
-                    <img src="../../img/2_copy1.png" alt="" class="p2-copy1 pa">
-                </div>
-                <div class="p3-body">
-                    <img src="../../img/3_pic1.jpg" alt="">
-                    <timeline class="p2-timeline pa"
-                              :start-time="40"
-                              :end-time="60"
-                              :run="currentPage==3">
-                    </timeline>
-                    <img src="../../img/3_copy1.png" alt="" class="p3-copy1 pa">
-                    <img src="../../img/3_copy2.png" alt="" class="p3-copy2 pa">
-                    <div class="p2-sponsor-arrow pa">
-                        &gt;&gt;
-                    </div>
-                    <a :href="sponseHref">
-                        <div class="p2-sponsor-text pa">
-                            支持这一分钟的改变
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div id="page4" class="page bg-lightblue">
-                <div class="p4-head">
-                    <img src="../../img/logo_1.png" alt="" class="logo pa">
-                </div>
-                <div class="p4-body">
-                    <img src="../../img/4_copy1.png" alt="" class="p4-copy1 pa">
-                    <img src="../../img/4_copy2.png" alt="" class="p4-copy2 pa">
-                    <img src="../../img/4_copy3.png" alt="" class="p4-copy3 pa">
-                    <a :href="sponseHref">
-                        <img src="../../img/4_btn.png" alt="" class="p4-btn pa">
-                    </a>
-                </div>
-            </div>
             <div id="page5" class="page">
                 <div class="p5-head">
                     <img src="../../img/6_copy1.png" alt="" class="p5-copy1 pa">
@@ -483,9 +444,8 @@
                     <img src="../../img/6_pic1.jpg" alt="" class="p5-pic1 pa">
                     <audio-player class="p5-audio-player pa" :duration="127.944"
                                   src="./audio/p5-audio.mp3" @on-play="setPlayingAudioVm" :playing-audio-vm="playingAudioVm">
+                        <img src="../../img/6_copy2.png" alt="" class="p5-copy2 pa">
                     </audio-player>
-                    <img src="../../img/6_copy2.png" alt="" class="p5-copy2 pa">
-
                     <img src="../../img/6_copy3.png" alt="" class="p5-copy3 pa">
                 </div>
                 <div class="p5-foot bg-lightblue pa">
@@ -494,96 +454,8 @@
                     </a>
                 </div>
             </div>
-            <div id="page6" class="page bg-lightblue">
-                <div class="p6-head">
-                    <img src="../../img/7_copy1.png" alt="" class="p6-copy1 pa">
-                    <img src="../../img/7_pic1.jpg" alt="" class="p5-pic1 pa">
-                </div>
-                <div class="p6-body">
-                    <img src="../../img/7_copy2.png" alt="" class="p6-copy2 pa">
-                    <div class="p6-sponsor-arrow pa">
-                        &gt;&gt;
-                    </div>
-                    <a :href="sponseHref">
-                        <div class="p2-sponsor-text pa">
-                            继续支持这挽救生命的改变
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div id="page7" class="page bg-lightblue">
-                <div class="p7-head">
-                    <img src="../../img/8_copy1.png" alt="" class="p6-copy1 pa">
-                </div>
-                <div class="p7-body">
-                    <img src="../../img/8_pic1.jpg" alt="" class="p7-pic1 pa">
-                    <img src="../../img/8_copy2.png" alt="" class="p7-copy2 pa">
-                    <img src="../../img/8_copy3.png" alt="" class="p7-copy3 pa">
-                    <div class="p6-sponsor-arrow pa">
-                        &gt;&gt;
-                    </div>
-                    <a :href="sponseHref">
-                        <div class="p2-sponsor-text pa">
-                            继续支持这挽救生命的改变
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div id="page8" class="page">
-                <div class="p8-head">
-                    <img src="../../img/9_copy1.png" alt="" class="p8-copy1 pa">
-                </div>
-                <div class="p8-body">
-                    <img src="../../img/9_pic1.jpg" alt="" class="p8-pic1 pa">
-                    <img src="../../img/9_copy2.png" alt="" class="p8-copy2 pa">
-                </div>
-                <div class="p8-foot bg-darkblue pa">
-                    <a :href="sponseHref">
-                        <img src="../../img/4_btn.png" alt="" class="p4-btn pa">
-                    </a>
-                </div>
-            </div>
-            <div id="page9" class="page">
-                <div class="p9-head bg-lightblue">
-                    <img src="../../img/10_copy1.png" alt="" class="p9-copy1 pa">
-                </div>
-                <div class="p9-body">
-                    <img src="../../img/10_pic1.jpg" alt="" class="p9-pic1 pa">
-                    <div class="p9-copy2-box bg-darkblue pa">
-                        <img src="../../img/10_copy2.png" alt="" class="p9-copy2 pa">
-                    </div>
-                    <audio-player class="p9-audio-player pa" :duration="97.68"
-                                  src="./audio/p9-audio.mp3" @on-play="setPlayingAudioVm" :playing-audio-vm="playingAudioVm">
-                    </audio-player>
-                    <img src="../../img/10_copy3.png" alt="" class="p9-copy3 pa">
-                    <img src="../../img/10_copy4.png" alt="" class="p9-copy4 pa">
-                </div>
-                <div class="p8-foot bg-darkblue pa">
-                    <a :href="sponseHref">
-                        <img src="../../img/4_btn.png" alt="" class="p4-btn pa">
-                    </a>
-                </div>
-            </div>
-            <div id="page10" class="page bg-lightblue">
-                <div class="p4-head">
-                    <img src="../../img/logo_1.png" alt="" class="logo pa">
-                </div>
-                <div class="p4-body">
-                    <img src="../../img/4_copy1.png" alt="" class="p4-copy1 pa">
-                    <img src="../../img/11_copy2.png" alt="" class="p4-copy2 pa">
 
-                    <img src="../../img/11_copy3.png" alt="" class="p10-copy3 pa">
-                    <img src="../../img/11_copy4.png" alt="" class="p10-copy4 pa">
-                </div>
-                <div class="p10-foot bg-darkblue pa">
-                    <a :href="sponseHref">
-                        <div class="p10-btn-box pa">
-                            <img src="../../img/11_btn-text.png" alt="" class="p10-btn-text pa">
-                        </div>
-                    </a>
-                    <img src="../../img/11_copy5.png" alt="" class="p10-copy5 pa">
-                </div>
-            </div>
+
         </div>
     </div>
 </template>
